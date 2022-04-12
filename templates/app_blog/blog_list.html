@@ -19,9 +19,9 @@
              <p>{{ x.blog_content|linebreaks }}</p>
            </div>
            {% if user.is_authenticated %}
-           <a href="{% url 'app_blog:blog_details' slug=x.slug %}">Read More</a>  <br>   <br>
+           <a href="{% url 'app_blog:blog_details' slug=x.slug %}">Read More...</a>  <br>   <br>
            {% else %}
-           <a href="{% url 'app_blog:blog_details_not_loggedin' slug=x.slug %}">Read More</a>  <br>   <br>
+           <a href="{% url 'app_blog:blog_details_not_loggedin' slug=x.slug %}">Read More...</a>  <br>   <br>
            {% endif %}
            <h6> Posted By:  <a href="#"> {{ x.author }}  </a></h6>
            <h6>{{ x.liked_blog.count }} Likes | {{ x.blog_comment.count }} Comments </h6>
