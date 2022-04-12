@@ -26,9 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/',include('app_login.urls')),
     path('blog/',include('app_blog.urls')),
+     path('',views.index,name='index'),
     url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
-    path('',views.index,name='index'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
