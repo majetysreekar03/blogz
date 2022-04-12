@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   My Blogs
+{% endblock %}
+
+{% block body_block %}
+
+{% for x in user.post_author.all %}
+
+<h2>{{ x.blog_title }}</h2>
+<h6><i>{{ x.publish_date }}</i></h6>
+<div class="row">
+    <div class="col-sm-4">
+        <img  src="/media/{{ x.blog_image }}" alt="{{ x.blog_title }}" title="{{ x.blog_title }}" width="100%">
+    </div>
+    <div class="col-sm-8">
+        <div class="content">
+          <p>{{ x.blog_content|linebreaks }}</p>
+        </div>
+        <a href="{% url 'app_blog:blog_details' slug=x.slug  %}">Read More</a>  <br>  <br>
+        <h6>{{ x.liked_blog.count }} Likes | {{ x.blog_comment.count }} Comments </h6>
+    </div>
+</div>
+<br>
+
+<a href="{% url 'app_blog:editblog' pk=x.pk %}" class="btn btn-primary btn-sm">Edit</a>
+<br><br>  <hr>
+{% endfor %}
+   
+{% endblock %}

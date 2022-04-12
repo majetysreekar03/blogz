@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+   Login Page
+{% endblock %}
+
+{% if change %}
+<div class="alert alert-success">
+    <p>Password Changed Successfully</p>
+    <p>Please <b>Login</b> to Continue</p>
+</div>
+{% endif %}
+
+{% block body_block %}
+  
+   <h1>Login Your Account</h1>
+   <form method="post">
+       {{ form|crispy }}
+       {% csrf_token %}
+       <br>
+       <button class="btn btn-primary btn-sm">Login</button>
+   </form>
+   <br> <br>
+   <div>
+       <p>New User? Then Please <a href="{% url 'app_login:signup' %}"> Create an Account <a> </p>
+   </div>
+
+{% endblock %}

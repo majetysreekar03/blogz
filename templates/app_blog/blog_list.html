@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   Home
+{% endblock %}
+
+{% block body_block %}
+
+  {% for x in blogs %}
+  <div class="highlight_blog">
+   <h2 >{{ x.blog_title }}</h2>
+   <h6><i>{{ x.publish_date }}</i></h6>
+   <div class="row">
+       <div class="col-sm-4">
+           <img  src="/media/{{ x.blog_image }}" alt="{{ x.blog_title }}" title="{{ x.blog_title }}" width="100%">
+       </div>
+       <div class="col-sm-8">
+           <div  class="content">
+             <p>{{ x.blog_content|linebreaks }}</p>
+           </div>
+           {% if user.is_authenticated %}
+           <a href="{% url 'app_blog:blog_details' slug=x.slug %}">Read More</a>  <br>   <br>
+           {% else %}
+           <a href="{% url 'app_blog:blog_details_not_loggedin' slug=x.slug %}">Read More</a>  <br>   <br>
+           {% endif %}
+           <h6> Posted By:  <a href="#"> {{ x.author }}  </a></h6>
+           <h6>{{ x.liked_blog.count }} Likes | {{ x.blog_comment.count }} Comments </h6>
+       </div>
+   </div>
+  </div>
+  <br> <hr> <br>
+  {% endfor %}
+
+{% endblock %}
+
+<!-- {% url 'app_blog:blog_details_not_loggedin' slug=x.slug  %} -->
